@@ -1,12 +1,12 @@
 import React from "react";
 import Board from "./features/board/Board";
-import PlayerIndicator from "./features/player/PlayerIndicator";
+import PlayerIndicator from "./features/board/PlayerIndicator";
 
 function App() {
   return (
     <main>
       <Board />
-      <PlayerIndicator />
+      {/* <PlayerIndicator /> */}
     </main>
   );
 }

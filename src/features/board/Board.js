@@ -1,13 +1,11 @@
-import usePlayerTurn from "../../hooks/usePlayerTurn";
-
 import { players } from "../../app/constants";
-import Cross from "./Cross";
-import Zero from "./Zero";
 import useGame from "../../hooks/useGame";
 
+import Cross from "./Cross";
+import Zero from "./Zero";
+
 const Board = () => {
-  const { cells } = useGame();
-  const { handleCellClick } = usePlayerTurn();
+  const { cells, handleCellClick } = useGame();
 
   return (
     <div className="board">

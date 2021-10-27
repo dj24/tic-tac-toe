@@ -4,7 +4,8 @@ import { players } from "../../app/constants";
 const BLANK_BOARD = [null, null, null, null, null, null, null, null, null];
 
 const initialState = {
-  value: BLANK_BOARD,
+  cells: BLANK_BOARD,
+  player: players.CROSS,
 };
 
 export const boardSlice = createSlice({
@@ -12,17 +13,16 @@ export const boardSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.value = BLANK_BOARD;
+      state = initialState;
     },
-    crossAtIndex: (state, action) => {
-      state.value[action.payload] = players.CROSS;
-    },
-    zeroAtIndex: (state, action) => {
-      state.value[action.payload] = players.ZERO;
+    takeTurn: (state, action) => {
+      state.cells[action.payload] = state.player;
+      state.player =
+        state.player === players.ZERO ? players.CROSS : players.ZERO;
     },
   },
 });
 
-export const { reset, crossAtIndex, zeroAtIndex } = boardSlice.actions;
+export const { reset, takeTurn } = boardSlice.actions;
 
 export default boardSlice.reducer;
