@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
 main {
   @apply w-full h-screen flex items-center justify-center;
 }
@@ -9,6 +15,20 @@ main {
 .board {
   @apply w-96 h-96 grid grid-cols-3 auto-cols-fr auto-rows-fr;
   .cell {
+    @apply cursor-pointer relative;
+    &::after {
+      transition: background-color ease 0.4s;
+      content: "";
+      width: calc(100% - 2rem);
+      height: calc(100% - 2rem);
+      @apply block rounded-xl m-4 absolute top-0;
+    }
+    &:hover {
+      &::after {
+        @apply bg-gray-100;
+      }
+    }
+
     // Hoizontal Middle Cells
     &:nth-child(3n + 2) {
       @apply border-l-4 border-r-4;
