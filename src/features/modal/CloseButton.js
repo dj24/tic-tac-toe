@@ -1,3 +1,16 @@
+/**
+ * Icon button for use inside the `Modal` component for closing.
+ *
+ * @example
+ * ```jsx
+ *
+ * <header>
+ *   <span>Modal Heading</span>
+ *   <CloseButton onClick={closeHandler} />
+ * </header>
+ * ```
+ *
+ */
 const CloseButton = (props) => {
   return (
     <button className="text-black hover:bg-gray-100 rounded-lg p-2" {...props}>

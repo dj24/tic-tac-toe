@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import useGame from "../../hooks/useGame";
 import Button from "./Button";
 
-const transition = {
+const TRANSITION_BASE = {
   type: "spring",
   mass: 10,
   stiffness: 2000,
@@ -11,22 +11,28 @@ const transition = {
   restDelta: 0.005,
 };
 
+/**
+ * The entry point of the App; the first screen presented
+ *
+ * @example
+ * ```jsx
+ *
+ * const Page = () => (
+ *    <StartScreen />
+ * );
+ * ```
+ *
+ */
 const StartScreen = () => {
   const { handleStartClick } = useGame();
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className="mt-12 sm:mr-8 max-w-lg p-6 flex flex-col items-start"
-    >
+    <motion.div className="mt-12 sm:mr-8 max-w-lg p-6 text-center sm:text-left flex flex-col items-center sm:items-start">
       <motion.h1
         layoutId="title"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ ...transition, delay: 0.2 }}
+        transition={{ ...TRANSITION_BASE, delay: 0.2 }}
         className="text-5xl sm:text-6xl lg:text-7xl font-black flex mb-6 "
       >
         Tic Tac Toe
@@ -35,7 +41,7 @@ const StartScreen = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, transition: { duration: 0.1, delay: 0 } }}
-        transition={{ ...transition, delay: 0.4 }}
+        transition={{ ...TRANSITION_BASE, delay: 0.4 }}
         className="text-xl sm:text-2xl text-gray-400 mb-6"
       >
         A game for 2 players: Match 3 cells in a row before the other player to
@@ -45,7 +51,7 @@ const StartScreen = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, transition: { duration: 0.1, delay: 0 } }}
-        transition={{ ...transition, delay: 0.6 }}
+        transition={{ ...TRANSITION_BASE, delay: 0.6 }}
         onClick={handleStartClick}
       >
         Start Game

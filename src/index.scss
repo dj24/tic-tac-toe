@@ -13,33 +13,36 @@ body {
   padding: 1rem;
   max-width: calc(100vw - 2rem);
   max-height: calc(100vw - 2rem);
-  width: 30rem;
-  height: 30rem;
+  width: 25rem;
+  height: 25rem;
+
   .cell {
     @apply cursor-pointer flex;
     padding: 4px;
     .hover-container {
-      transition: background-color ease 0.4s;
-      @apply m-3 w-full rounded-xl;
+      @apply m-3 w-full rounded-xl transition-colors;
     }
 
     // Hoizontal Middle Cells
     &:nth-child(3n + 2) {
       @apply border-l-4 border-r-4 px-0;
     }
+
     // Vertical Middle Cells
     &:nth-child(4),
     &:nth-child(5),
     &:nth-child(6) {
       @apply border-t-4 border-b-4 py-0;
     }
+
     svg {
-      @apply p-3 lg:p-6  h-full w-full;
+      @apply p-2 lg:p-4  h-full w-full;
 
       // Cross lines
       path {
         @apply text-red-500 stroke-current;
       }
+
       // Zero
       circle {
         @apply text-blue-500 stroke-current;

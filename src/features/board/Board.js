@@ -6,6 +6,17 @@ import useGame from "../../hooks/useGame";
 import Cross from "./Cross";
 import Zero from "./Zero";
 
+/**
+ * 3x3 grid component to handle the main play area of the game.
+ *
+ * @example
+ * ```jsx
+ * const Page = () => (
+ *    <Board/>
+ * );
+ * ```
+ *
+ */
 const Board = () => {
   const { cells, player, handleCellClick } = useGame();
 
@@ -13,7 +24,7 @@ const Board = () => {
     <motion.div
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, transition: { duration: 0.1 } }}
       className="board"
     >
       {cells?.map((cell, i) => {

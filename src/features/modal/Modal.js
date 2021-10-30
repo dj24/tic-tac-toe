@@ -4,6 +4,18 @@ import useGame from "../../hooks/useGame";
 import Button from "../startScreen/Button";
 import CloseButton from "./CloseButton";
 
+/**
+ * The top level component used to render the entire app from the root file.
+ * This component requires a valid Redux provider as it's parent.
+ *
+ * @example
+ * ```jsx
+ * const Page = () => (
+ *    <Modal>Modal Content Here</Modal>
+ * );
+ * ```
+ *
+ */
 const Modal = ({ children }) => {
   const { handleStartClick } = useGame();
 
@@ -20,10 +32,13 @@ const Modal = ({ children }) => {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         transition={{
-          type: "spring",
-          stiffness: 800,
-          damping: 100,
-          restDelta: 0.0001,
+          scale: {
+            type: "spring",
+            mass: 10,
+            stiffness: 1500,
+            damping: 135,
+            restDelta: 0.0005,
+          },
         }}
         className="rounded-xl w-full max-w-sm bg-white flex-col m-4"
       >

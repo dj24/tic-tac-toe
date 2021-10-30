@@ -1,5 +1,19 @@
 import { motion } from "framer-motion";
-
+/**
+ * Animated SVG circle/zero to be used as a player icon inside the grid.
+ *
+ * @example
+ * ```jsx
+ *
+ * const GridCell = () => (
+ *    <div className="cell">
+ *      {cell === players.ZERO && <Zero />}
+ *      {cell === players.CROSS && <Cross />}
+ *    </div>
+ * );
+ * ```
+ *
+ */
 const Zero = () => {
   return (
     <svg

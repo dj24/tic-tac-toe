@@ -3,6 +3,18 @@ import { motion } from "framer-motion";
 const SCALE_DURATION = 0.075;
 const LINE_STAGGER = 0.225;
 
+/**
+ * Animated SVG cross to be used as a player icon inside the grid.
+ *
+ * @example
+ * ```jsx
+ * <div className="cell">
+ *   {cell === players.ZERO && <Zero />}
+ *   {cell === players.CROSS && <Cross />}
+ * </div>
+ * ```
+ *
+ */
 const Cross = () => {
   return (
     <motion.svg
