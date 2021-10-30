@@ -7,21 +7,32 @@ import Cross from "./Cross";
 import Zero from "./Zero";
 
 const Board = () => {
-  const { cells, handleCellClick } = useGame();
+  const { cells, player, handleCellClick } = useGame();
 
   return (
     <motion.div
-      initial={{ y: "100%", opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: "-100%", opacity: 0 }}
+      initial={{ opacity: 0, x: 200 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0 }}
       className="board"
     >
-      {cells?.map((cell, i) => (
-        <div key={i} className="cell" onClick={handleCellClick(i)}>
-          {cell === players.ZERO && <Zero />}
-          {cell === players.CROSS && <Cross />}
-        </div>
-      ))}
+      {cells?.map((cell, i) => {
+        let className = "hover-container";
+        if (player === players.ZERO && cell === null) {
+          className += " hover:bg-blue-100";
+        }
+        if (player === players.CROSS && cell === null) {
+          className += " hover:bg-red-100";
+        }
+        return (
+          <motion.div key={i} className="cell" onClick={handleCellClick(i)}>
+            <motion.div className={className}>
+              {cell === players.ZERO && <Zero />}
+              {cell === players.CROSS && <Cross />}
+            </motion.div>
+          </motion.div>
+        );
+      })}
     </motion.div>
   );
 };

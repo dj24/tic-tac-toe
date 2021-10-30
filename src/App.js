@@ -1,90 +1,64 @@
 import React from "react";
-import Board from "./features/board/Board";
-import PlayerIndicator from "./features/board/PlayerIndicator";
-import { AnimatePresence, motion, MotionConfig } from "framer-motion";
+
+import {
+  AnimatePresence,
+  AnimateSharedLayout,
+  motion,
+  MotionConfig,
+} from "framer-motion";
+
 import useGame from "./hooks/useGame";
 import { gameStates } from "./app/constants";
-
-const Button = (props) => {
-  return (
-    <button
-      className="px-4 py-2 rounded-full bg-purple-500 hover:bg-purple-600 text-white"
-      {...props}
-    />
-  );
-};
-
-const headingVariants = {
-  show: {
-    transition: {
-      delayChildren: 0.2,
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const spanVariants = {
-  hidden: {
-    opacity: 0,
-    y: 10,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-  },
-};
-
-const StartScreen = () => {
-  const { handleStartClick } = useGame();
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
-    >
-      <motion.h1
-        variants={headingVariants}
-        initial={"hidden"}
-        animate={"show"}
-        className="text-7xl font-black flex"
-      >
-        <motion.span className="flex mr-4" variants={spanVariants}>
-          Tic
-        </motion.span>
-        <motion.span className="flex mr-4" variants={spanVariants}>
-          Tac
-        </motion.span>
-        <motion.span className="flex mr-4" variants={spanVariants}>
-          Toe
-        </motion.span>
-      </motion.h1>
-      <Button onClick={handleStartClick}>Start Game</Button>
-    </motion.div>
-  );
-};
+import Board from "./features/board/Board";
+import PlayerIndicator from "./features/board/PlayerIndicator";
+import StartScreen from "./features/startScreen/StartScreen";
+import Modal from "./features/modal/Modal";
 
 const App = () => {
   const { gameState } = useGame();
   return (
-    <main>
+    <motion.main className="fixed w-full h-full flex flex-col-reverse lg:flex-row items-center justify-center">
       <MotionConfig
         transition={{
           type: "spring",
           mass: 10,
-          stiffness: 800,
+          stiffness: 1500,
           damping: 200,
-          restDelta: 0.001,
+          restDelta: 0.005,
         }}
       >
-        <AnimatePresence exitBeforeEnter>
-          {gameState === gameStates.START && <StartScreen key={1} />}
-          {gameState === gameStates.IN_PROGRESS && <Board key={2} />}
-        </AnimatePresence>
+        <AnimateSharedLayout type="crossfade">
+          <AnimatePresence exitBeforeEnter>
+            {gameState === gameStates.START ? (
+              <StartScreen key={"start-screen"} />
+            ) : (
+              <>
+                <motion.div className="fixed top-0 p-12">
+                  <motion.h1 className="font-black text-4xl" layoutId="title">
+                    Tic Tac Toe
+                  </motion.h1>
+                </motion.div>
+                <Board key={"board"} />
+                <PlayerIndicator key={"player-indicator"} />
+              </>
+            )}
+            {gameState === gameStates.CROSS_WINS && (
+              <Modal key={"cross-modal"}>
+                🎉 <span className="text-red-500">Cross</span> Wins!
+              </Modal>
+            )}
+            {gameState === gameStates.ZERO_WINS && (
+              <Modal key={"zero-modal"}>
+                🎉 <span className="text-blue-500">Zero</span> Wins!
+              </Modal>
+            )}
+            {gameState === gameStates.DRAW && (
+              <Modal key={"draw-modal"}>🙅‍♂️ Draw!</Modal>
+            )}
+          </AnimatePresence>
+        </AnimateSharedLayout>
       </MotionConfig>
-      {/* <PlayerIndicator /> */}
-    </main>
+    </motion.main>
   );
 };
 

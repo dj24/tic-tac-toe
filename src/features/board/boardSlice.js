@@ -3,17 +3,16 @@ import { players } from "../../app/constants";
 
 const BLANK_BOARD = [null, null, null, null, null, null, null, null, null];
 
-const initialState = {
-  cells: BLANK_BOARD,
-  player: players.CROSS,
-};
-
 export const boardSlice = createSlice({
   name: "board",
-  initialState,
+  initialState: {
+    cells: BLANK_BOARD,
+    player: players.CROSS,
+  },
   reducers: {
     reset: (state) => {
-      state = initialState;
+      state.cells = BLANK_BOARD;
+      state.player = players.CROSS;
     },
     takeTurn: (state, action) => {
       state.cells[action.payload] = state.player;
