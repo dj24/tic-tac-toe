@@ -32,7 +32,7 @@ const StartScreen = () => {
         layoutId="title"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ ...TRANSITION_BASE, delay: 0.2 }}
+        transition={{ ...TRANSITION_BASE, delay: 0.4 }}
         className="text-5xl sm:text-6xl lg:text-7xl font-black flex mb-6 "
       >
         Tic Tac Toe
@@ -41,7 +41,7 @@ const StartScreen = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, transition: { duration: 0.1, delay: 0 } }}
-        transition={{ ...TRANSITION_BASE, delay: 0.4 }}
+        transition={{ ...TRANSITION_BASE, delay: 0.6 }}
         className="text-xl sm:text-2xl text-gray-400 mb-6"
       >
         A game for 2 players: Match 3 cells in a row before the other player to
@@ -51,7 +51,7 @@ const StartScreen = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, transition: { duration: 0.1, delay: 0 } }}
-        transition={{ ...TRANSITION_BASE, delay: 0.6 }}
+        transition={{ ...TRANSITION_BASE, delay: 0.8 }}
         onClick={handleStartClick}
       >
         Start Game
