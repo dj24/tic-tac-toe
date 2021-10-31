@@ -19,7 +19,7 @@ const MiniTitle = () => {
 
   return (
     <button
-      className="fixed top-0 py-6 px-8 my-6 transition-colors hover:bg-gray-100 rounded-xl"
+      className="fixed top-0 py-4 px-6 my-4 sm:py-6 sm:px-8 sm:my-6 transition-colors hover:bg-gray-100 rounded-xl"
       onClick={() => dispatch(setGameState(gameStates.START))}
     >
       <motion.h1 className="font-black text-4xl" layoutId="title">

@@ -22,6 +22,7 @@ const Board = () => {
 
   return (
     <motion.div
+      aria-label="tic-tac-toe-grid"
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, transition: { duration: 0.1 } }}
@@ -36,11 +37,15 @@ const Board = () => {
           className += " hover:bg-red-100";
         }
         return (
-          <motion.div key={i} className="cell" onClick={handleCellClick(i)}>
-            <motion.div className={className}>
+          <motion.div key={i} className="cell">
+            <motion.button
+              aria-label={`grid-cell-${i}`}
+              className={className}
+              onClick={handleCellClick(i)}
+            >
               {cell === players.ZERO && <Zero />}
               {cell === players.CROSS && <Cross />}
-            </motion.div>
+            </motion.button>
           </motion.div>
         );
       })}

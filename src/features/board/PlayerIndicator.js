@@ -3,10 +3,12 @@ import { motion } from "framer-motion";
 import useGame from "../../hooks/useGame";
 import { players } from "../../app/constants";
 
-const PlayerSpan = ({ children, colour, active }) => {
+const PlayerSpan = ({ children, player, active }) => {
   const className = `
   px-6 py-3 rounded-xl transition-colors font-semibold
-  ${active ? `text-${colour}-500 bg-${colour}-100` : "text-gray-400"}`;
+  ${active && player === players.CROSS ? "text-red-500 bg-red-100" : ""}
+  ${active && player === players.ZERO ? "text-blue-500 bg-blue-100" : ""}
+  ${!active ? "text-gray-400" : ""}`;
   return <span className={className}>{children}</span>;
 };
 
@@ -35,10 +37,10 @@ const PlayerIndicator = () => {
       transition={{ type: "spring", bounce: 0.25 }}
       className="flex fixed bottom-0 w-full max-w-md justify-between p-8 capitalize text-2xl"
     >
-      <PlayerSpan colour="red" active={player === players.CROSS}>
+      <PlayerSpan player={players.CROSS} active={player === players.CROSS}>
         {players.CROSS}
       </PlayerSpan>
-      <PlayerSpan colour="blue" active={player === players.ZERO}>
+      <PlayerSpan player={players.ZERO} active={player === players.ZERO}>
         {players.ZERO}
       </PlayerSpan>
     </motion.div>

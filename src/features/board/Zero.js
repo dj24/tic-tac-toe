@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 const Zero = () => {
   return (
     <svg
+      aria-label="zero-icon"
       width="100"
       height="100"
       viewBox="0 0 100 100"
